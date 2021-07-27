@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./build/main.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="header-title">MOTION</h1>
+        <nav class="global-nav">
+          <ul>
+            <li><button type="button">IMAGE</button></li>
+            <li><button type="button">VIDEO</button></li>
+            <li><button type="button">NOTE</button></li>
+            <li><button type="button">TASK</button></li>
+          </ul>
+        </nav>
+      </header>
+      <main class="main">
+        <div class="items">
+          <div class="item item-media">
+            <div class="item-title">
+              <h1>Something</h1>
+            </div>
+            <div class="video">
+              <iframe
+                width="440"
+                height="200"
+                src="https://www.youtube.com/embed/n7GSNEjDtGQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <button class="delete">❌</button>
+          </div>
+          <div class="item item-text">
+            <div class="item-title">
+              <h1>Note</h1>
+            </div>
+            <div class="body">
+              <p>hello</p>
+            </div>
+            <button class="delete">❌</button>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <span>&copy; Copyright by youyoy689. All rights reserved</span>
+      </footer>
+    </div>
+  </body>
+</html>
