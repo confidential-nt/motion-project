@@ -1,7 +1,10 @@
 class Image {
   constructor() {}
 
-  displayHTML() {}
+  displayHTML() {
+    const modalContainer = document.querySelector(".modal-container");
+    modalContainer?.classList.add("show");
+  }
 }
 
 export default Image;

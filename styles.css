@@ -54,6 +54,17 @@ li {
   list-style: none;
 }
 
+input:focus {
+  outline: none;
+  border: none;
+}
+
+.show {
+  display: block !important;
+}
+
+/* MAIN */
+
 .container {
   width: 800px;
   max-width: 800px;
@@ -80,19 +91,22 @@ li {
   margin-right: 10px;
 }
 
-.global-nav button {
+.red-btn {
   background-color: var(--accent-color);
   color: var(--smokywhite);
-  font-size: 12px;
-  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
   font-weight: 700;
 }
 
-.global-nav button:active {
+.nav-btn {
+  font-size: 12px;
+  width: 100px;
+  padding: 12px;
+}
+
+.red-btn:active {
   transform: translate(2px, 1px);
 }
 
@@ -160,4 +174,72 @@ li {
   color: var(--smokywhite);
   background-color: var(--black);
   padding: 12px;
+}
+
+/* MODAL */
+
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  display: none;
+}
+
+.modal-shade {
+  background-color: var(--translucent-black);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: relative;
+  width: 35vw;
+  background-image: var(--component-bg-gradient);
+  border-radius: 10px;
+  padding: 35px 10px 10px 10px;
+}
+
+.modal-input {
+  margin-bottom: 13px;
+}
+
+.modal-input span {
+  display: block;
+  color: var(--text-accent-color);
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.modal-input input {
+  width: 100%;
+  height: 30px;
+  box-shadow: 0.5px 0.5px 1px var(--smokywhite), 0 -1px 1px var(--shadow-color);
+  background-color: var(--text-edit-bg-color);
+  border: none;
+  font-size: 24px;
+  color: var(--smokywhite);
+}
+
+.modal-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-btn {
+  font-size: 10px;
+  width: 50px;
+  padding: 7px 0;
+  border-radius: 3px;
+  box-shadow: 1px 1px rgb(65, 53, 53);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
