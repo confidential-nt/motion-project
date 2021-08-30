@@ -1,3 +1,3 @@
 export interface Iimage {
-  displayHTML(): void;
+  run(): void;
 }

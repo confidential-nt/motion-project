@@ -3,7 +3,7 @@ import Image from "./composition/image";
 import Video from "./composition/video";
 import Note from "./composition/note";
 import Task from "./composition/task";
-import { Iimage } from "./interfaces/i-image";
+
 import { iModal } from "./interfaces/i-modal";
 
 class App {
@@ -15,6 +15,7 @@ class App {
 
   run() {
     this.handleBtnClickEvent();
+    this.drawItem();
   }
 
   private handleBtnClickEvent() {
@@ -28,9 +29,31 @@ class App {
 
     this.Modal.displayModal(func);
   }
+
+  private drawItem() {
+    const images = JSON.parse(localStorage.getItem("IMAGE"));
+
+    const itemContainer = document.querySelector(".items");
+
+    itemContainer?.innerHTML = images
+      .map(
+        (item) => `  <div class="item item-media">
+    <div class="item-title">
+      <h1>${item.title}</h1>
+    </div>
+    <div class="image">
+      <img src=${item.url} alt=${item.title}/>
+    </div>
+    <button class="delete">❌</button>
+  </div>`
+      )
+      .join("");
+  }
 }
 
-const modal = new Modal();
+const image = new Image();
+
+const modal = new Modal(image);
 const app = new App(modal);
 
 app.run();
