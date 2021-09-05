@@ -1,9 +1,5 @@
 import Modal from "./composition/modal";
-import Image from "./composition/image";
-import Video from "./composition/video";
-import Note from "./composition/note";
-import Task from "./composition/task";
-
+import Input from "./composition/input";
 import { iModal } from "./interfaces/i-modal";
 
 class App {
@@ -31,29 +27,59 @@ class App {
   }
 
   private drawItem() {
-    const images = JSON.parse(localStorage.getItem("IMAGE"));
+    const items = JSON.parse(localStorage.getItem("ITEMS"));
 
     const itemContainer = document.querySelector(".items");
 
-    itemContainer?.innerHTML = images
-      .map(
-        (item) => `  <div class="item item-media">
-    <div class="item-title">
-      <h1>${item.title}</h1>
-    </div>
-    <div class="image">
-      <img src=${item.url} alt=${item.title}/>
-    </div>
-    <button class="delete">❌</button>
-  </div>`
-      )
+    let mediaHtml;
+
+    itemContainer?.innerHTML = items
+      .map((item) => {
+        const itemType = item.body ? "item-text" : "item-media";
+
+        if (item.type === "image") {
+          mediaHtml = `<img src=${item.url} alt=${item.title}/>`;
+        } else if (item.type === "video") {
+          mediaHtml = `<iframe
+          width="440"
+          height="200"
+          src=${item.url}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>`;
+        } else if (item.type === "task") {
+          mediaHtml = `<input type="checkbox" id=${item.type}/>
+          <label for=${item.type}>${item.body}</label>
+          `;
+        } else {
+          mediaHtml = `<p>${item.body}</p>`;
+        }
+
+        return `  <div class="item ${itemType}">
+      <div class="item-title">
+        <h1>${item.title}</h1>
+      </div>
+      <div class=${
+        item.type === "image"
+          ? "image"
+          : item.type === "video"
+          ? "video"
+          : "body"
+      }>
+        ${mediaHtml}
+      </div>
+      <button class="delete">❌</button>
+    </div>`;
+      })
       .join("");
   }
 }
 
-const image = new Image();
+const input = new Input();
 
-const modal = new Modal(image);
+const modal = new Modal(input);
 const app = new App(modal);
 
 app.run();

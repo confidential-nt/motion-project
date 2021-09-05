@@ -4,4 +4,5 @@ export type Item = {
   title: string;
   url?: string;
   body?: string;
+  type: Media;
 };

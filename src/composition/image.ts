@@ -1,5 +1,5 @@
 import { Iimage } from "../interfaces/i-image";
-import { Item } from "../type/type";
+import { Item, Media } from "../type/type";
 
 class Image implements Iimage {
   private inputs!: NodeListOf<HTMLInputElement>;
@@ -8,13 +8,15 @@ class Image implements Iimage {
   private items: Item[] = [];
 
   private static KEY: string;
+  private type: Media | undefined;
   constructor() {
     Image.KEY = "IMAGE";
   }
 
-  run() {
+  run(type: Media) {
     this.inputs = document.querySelectorAll(".modal-input input");
     this.submitBtn = document.querySelector(".add-btn");
+    this.type = type;
     this.turnOnInputEvent();
   }
 

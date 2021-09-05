@@ -1,3 +1,5 @@
+import { Media } from "../type/type";
+
 export interface Iimage {
-  run(): void;
+  run(type: Media): void;
 }
