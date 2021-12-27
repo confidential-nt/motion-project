@@ -3,6 +3,7 @@ import Input from "./composition/input";
 import { iModal } from "./interfaces/i-modal";
 
 class App {
+  private ItemList: HTMLDivElement | null = document.querySelector(".items");
   private static buttons: NodeListOf<HTMLButtonElement> | undefined;
 
   constructor(private Modal: iModal) {
@@ -29,11 +30,9 @@ class App {
   private drawItem() {
     const items = JSON.parse(localStorage.getItem("ITEMS"));
 
-    const itemContainer = document.querySelector(".items");
-
     let mediaHtml;
 
-    itemContainer?.innerHTML = items
+    this.ItemList?.innerHTML = items
       .map((item) => {
         const itemType = item.body ? "item-text" : "item-media";
 
@@ -57,7 +56,7 @@ class App {
           mediaHtml = `<p>${item.body}</p>`;
         }
 
-        return `  <div class="item ${itemType}">
+        return `  <div class="item ${itemType}" id="${item.id}">
       <div class="item-title">
         <h1>${item.title}</h1>
       </div>
@@ -74,6 +73,25 @@ class App {
     </div>`;
       })
       .join("");
+
+    const deleteBtns = this.ItemList?.querySelectorAll(".delete");
+
+    deleteBtns?.forEach((btn) =>
+      btn.addEventListener("click", this.deleteItem.bind(this))
+    );
+  }
+
+  deleteItem(e) {
+    const item = e.target.parentNode;
+    this.ItemList?.removeChild(item);
+
+    const items = JSON.parse(localStorage.getItem("ITEMS"));
+
+    const findingIndex = items.findIndex((el) => el.id == item.id);
+
+    items.splice(findingIndex, 1);
+
+    localStorage.setItem("ITEMS", JSON.stringify(items));
   }
 }
 

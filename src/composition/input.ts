@@ -42,6 +42,7 @@ class Input {
       url: url,
       body: body,
       type: this.type,
+      id: Date.now(),
     };
 
     if (!obj.title) return;
@@ -95,7 +96,7 @@ class Input {
           mediaHtml = `<p>${item.body}</p>`;
         }
 
-        return `  <div class="item ${itemType}">
+        return `  <div class="item ${itemType}" id="${item.id}">
     <div class="item-title">
       <h1>${item.title}</h1>
     </div>
@@ -108,6 +109,23 @@ class Input {
   </div>`;
       })
       .join("");
+
+    const deleteBtns = this.ItemList?.querySelectorAll(".delete");
+
+    deleteBtns?.forEach((btn) =>
+      btn.addEventListener("click", this.deleteItem.bind(this))
+    );
+  }
+
+  deleteItem(e) {
+    const item = e.target.parentNode;
+    this.ItemList?.removeChild(item);
+
+    const findingIndex = this.items.findIndex((el) => el.id == item.id);
+
+    this.items.splice(findingIndex, 1);
+
+    localStorage.setItem(Input.KEY, JSON.stringify(this.items));
   }
 }
 

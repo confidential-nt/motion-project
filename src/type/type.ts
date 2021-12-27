@@ -5,4 +5,5 @@ export type Item = {
   url?: string;
   body?: string;
   type: Media;
+  id: number;
 };
