@@ -96,7 +96,9 @@ class Input {
           mediaHtml = `<p>${item.body}</p>`;
         }
 
-        return `  <div class="item ${itemType}" id="${item.id}">
+        return `  <div class="item ${itemType}" id="${
+          item.id
+        }" draggable="true">
     <div class="item-title">
       <h1>${item.title}</h1>
     </div>

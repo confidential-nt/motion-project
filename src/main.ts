@@ -1,5 +1,6 @@
 import Modal from "./composition/modal";
 import Input from "./composition/input";
+import DragDrop from "./composition/dragDrop";
 import { iModal } from "./interfaces/i-modal";
 
 class App {
@@ -13,6 +14,7 @@ class App {
   run() {
     this.handleBtnClickEvent();
     this.drawItem();
+    new DragDrop();
   }
 
   private handleBtnClickEvent() {
@@ -56,7 +58,9 @@ class App {
           mediaHtml = `<p>${item.body}</p>`;
         }
 
-        return `  <div class="item ${itemType}" id="${item.id}">
+        return `  <div class="item ${itemType}" id="${
+          item.id
+        }" draggable="true">
       <div class="item-title">
         <h1>${item.title}</h1>
       </div>

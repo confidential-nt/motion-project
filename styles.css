@@ -126,20 +126,23 @@ input:focus {
   border-radius: 5px;
   box-shadow: 2px 4px #202020;
   position: relative;
+  margin-bottom: 20px;
 }
 
-.item:not(:last-child) {
-  margin-bottom: 20px;
+.item-accent {
+  border: 1px solid var(--accent-color);
 }
 
 .item-title {
   font-size: 8px;
   color: var(--text-accent-color);
   font-weight: 400;
+  pointer-events: none;
 }
 
 .item .body {
   color: #fff;
+  pointer-events: none;
 }
 
 .item-media {
